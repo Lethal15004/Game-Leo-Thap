@@ -1,0 +1,181 @@
+[gd_scene load_steps=23 format=3 uid="uid://blwf38bh4id4k"]
+
+[ext_resource type="Shader" path="res://player/dissolve.gdshader" id="1_i2cui"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_ufqt5"]
+[ext_resource type="AudioStream" uid="uid://bqhj1qkibbsre" path="res://sounds/d_hit.wav" id="2_4gnj6"]
+[ext_resource type="AudioStream" uid="uid://dqsoka3c7a6x1" path="res://sounds/Footstep1.wav" id="3_wnt40"]
+[ext_resource type="PackedScene" uid="uid://d0h6gwsg2ewh2" path="res://player/grapple/grapple.tscn" id="6_quhdi"]
+[ext_resource type="Texture2D" path="res://aseprite/geralt/geralt_idle.png" id="7_gidle"]
+[ext_resource type="Texture2D" path="res://aseprite/geralt/geralt_run.png" id="8_grun"]
+[ext_resource type="Texture2D" path="res://aseprite/geralt/geralt_jump.png" id="9_gjump"]
+[ext_resource type="Texture2D" path="res://aseprite/geralt/geralt_fall.png" id="10_gfall"]
+[ext_resource type="Texture2D" path="res://aseprite/geralt/geralt_land.png" id="11_gland"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pj5wf"]
+shader = ExtResource("1_i2cui")
+shader_parameter/color = Color(0.960784, 0.913725, 0.74902, 1)
+shader_parameter/percentage = 0.0
+shader_parameter/sensitivity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gidle0"]
+atlas = ExtResource("7_gidle")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gidle1"]
+atlas = ExtResource("7_gidle")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grun0"]
+atlas = ExtResource("8_grun")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grun1"]
+atlas = ExtResource("8_grun")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grun2"]
+atlas = ExtResource("8_grun")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjump0"]
+atlas = ExtResource("9_gjump")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfall0"]
+atlas = ExtResource("10_gfall")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gland0"]
+atlas = ExtResource("11_gland")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_geralt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gland0")
+}],
+"loop": true,
+"name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfall0")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gidle0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gidle1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjump0")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gland0")
+}],
+"loop": false,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grun0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grun1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grun2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kl2e"]
+size = Vector2(7, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqqhr"]
+size = Vector2(7, 15)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_ufqt5")
+_hit_sound = ExtResource("2_4gnj6")
+_step_sound = ExtResource("3_wnt40")
+_time_to_run_speed = 0.2
+_jump_distance = 2.0
+_jump_min_height = 1.0
+_fall_distance = 2.0
+_terminal_velocity = 18.0
+_grapple_pull_speed = 20.0
+_grapple_time_to_pull_speed = 0.333
+
+[node name="Grapple" parent="." instance=ExtResource("6_quhdi")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_pj5wf")
+sprite_frames = SubResource("SpriteFrames_geralt")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 1.5
+offset = Vector2(0, -7)
+
+[node name="AnimatedSprite2DNoGrapple" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_geralt")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 1.5
+offset = Vector2(0, -7)
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-0.5, 1.5)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_1kl2e")
+debug_color = Color(0.984314, 0, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_tqqhr")
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="DropTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="StepTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+autostart = true

@@ -1,0 +1,334 @@
+[gd_scene load_steps=11 format=3 uid="uid://bi6ibf4ocomk"]
+
+[ext_resource type="Script" path="res://pause/pause.gd" id="1_mpjwk"]
+[ext_resource type="FontFile" uid="uid://b7ajoqvrx56fk" path="res://fonts/KiwiSoda.ttf" id="1_wmyng"]
+[ext_resource type="Texture2D" uid="uid://bkw6v8krimqxq" path="res://aseprite/UI/grabber.png" id="2_g7u8l"]
+[ext_resource type="AudioStream" uid="uid://wcsxlr2fdooy" path="res://sounds/d_fast.wav" id="2_ulo52"]
+[ext_resource type="AudioStream" uid="uid://ccscxfp0ky2i6" path="res://sounds/d_slow.wav" id="3_j3are"]
+[ext_resource type="Texture2D" uid="uid://75smbelog52e" path="res://aseprite/UI/grabber_light.png" id="3_vw8rq"]
+[ext_resource type="Texture2D" uid="uid://bhlc3on0dj8g2" path="res://aseprite/UI/Check.png" id="4_qphhf"]
+[ext_resource type="Texture2D" uid="uid://boqucaghdj2su" path="res://aseprite/UI/uncheck.png" id="5_vcwoj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufhvr"]
+bg_color = Color(0.215686, 0.164706, 0.223529, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.215686, 0.164706, 0.223529, 1)
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1p2rf"]
+bg_color = Color(0.470588, 0.513726, 0.454902, 1)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.215686, 0.164706, 0.223529, 1)
+
+[sub_resource type="StyleBoxFlat" id="sb_close"]
+bg_color = Color(1, 1, 1, 0.22)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.55)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_close_pressed"]
+bg_color = Color(1, 1, 1, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+layer = 15
+script = ExtResource("1_mpjwk")
+_fast_sound = ExtResource("2_ulo52")
+_slow_sound = ExtResource("3_j3are")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.164706, 0.223529, 0.95)
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = -6
+text = "Kiwi Soda and Pear Soda 
+fonts from fontenddev.com"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="Label" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.666667, 0.392157, 0.301961, 1)
+theme_override_colors/font_outline_color = Color(0.215686, 0.164706, 0.223529, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 12
+theme_override_constants/line_spacing = -9
+theme_override_fonts/font = ExtResource("1_wmyng")
+theme_override_font_sizes/font_size = 24
+text = "Grapple Pack"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.913725, 0.74902, 1)
+theme_override_font_sizes/font_size = 4
+horizontal_alignment = 1
+
+[node name="TopSpacer" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Volume Settings:"
+horizontal_alignment = 1
+
+[node name="VolumeGrid" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Master"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="master_slider" type="HSlider" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("2_g7u8l")
+theme_override_icons/grabber_highlight = ExtResource("3_vw8rq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_ufhvr")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_1p2rf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1p2rf")
+min_value = -30.0
+max_value = 0.0
+step = 0.0
+value = -6.0
+scrollable = false
+
+[node name="MusicLabel" type="Label" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Music"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="music_slider" type="HSlider" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("2_g7u8l")
+theme_override_icons/grabber_highlight = ExtResource("3_vw8rq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_ufhvr")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_1p2rf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1p2rf")
+min_value = -30.0
+max_value = 0.0
+step = 0.0
+scrollable = false
+
+[node name="SoundsLabel" type="Label" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sounds"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="sounds_slider" type="HSlider" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("2_g7u8l")
+theme_override_icons/grabber_highlight = ExtResource("3_vw8rq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_ufhvr")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_1p2rf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1p2rf")
+min_value = -30.0
+max_value = 0.0
+step = 0.0
+scrollable = false
+
+[node name="VoicesLabel" type="Label" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Voices"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="voices_slider" type="HSlider" parent="Control/VBoxContainer/VolumeGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("2_g7u8l")
+theme_override_icons/grabber_highlight = ExtResource("3_vw8rq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_ufhvr")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_1p2rf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1p2rf")
+min_value = -30.0
+max_value = 0.0
+step = 0.0
+scrollable = false
+
+[node name="SectionSpacer" type="Control" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Assist Settings:"
+horizontal_alignment = 1
+
+[node name="AssistGrid" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="LongGrappleLabel" type="Label" parent="Control/VBoxContainer/AssistGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Long Grapple"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="long_grapple_check" type="CheckBox" parent="Control/VBoxContainer/AssistGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/checked = ExtResource("4_qphhf")
+theme_override_icons/unchecked = ExtResource("5_vcwoj")
+flat = true
+
+[node name="SlowModeLabel" type="Label" parent="Control/VBoxContainer/AssistGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Slow Mode"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="slow_mode_check" type="CheckBox" parent="Control/VBoxContainer/AssistGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/checked = ExtResource("4_qphhf")
+theme_override_icons/unchecked = ExtResource("5_vcwoj")
+flat = true
+
+[node name="InvinsibilityLabel" type="Label" parent="Control/VBoxContainer/AssistGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Invinsibility"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="invinsibility_check" type="CheckBox" parent="Control/VBoxContainer/AssistGrid"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/checked = ExtResource("4_qphhf")
+theme_override_icons/unchecked = ExtResource("5_vcwoj")
+flat = true
+
+[node name="BottomSpacer" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BtnClose" type="Button" parent="Control"]
+z_index = 100
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -26.0
+offset_top = 44.0
+offset_right = -6.0
+offset_bottom = 64.0
+focus_mode = 0
+text = "X"
+theme_override_colors/font_color = Color(0.96, 0.91, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0.22, 0.16, 0.22, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_close")
+theme_override_styles/pressed = SubResource("sb_close_pressed")
+theme_override_styles/hover = SubResource("sb_close")
+theme_override_styles/focus = SubResource("sb_close")
+
+[connection signal="pressed" from="Control/BtnClose" to="." method="_on_btn_close_pressed"]
+[connection signal="value_changed" from="Control/VBoxContainer/VolumeGrid/master_slider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/VolumeGrid/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/VolumeGrid/sounds_slider" to="." method="_on_sounds_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/VolumeGrid/voices_slider" to="." method="_on_voices_slider_value_changed"]
+[connection signal="toggled" from="Control/VBoxContainer/AssistGrid/long_grapple_check" to="." method="_on_long_grapple_check_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/AssistGrid/slow_mode_check" to="." method="_on_slow_mode_check_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/AssistGrid/invinsibility_check" to="." method="_on_invinsibility_check_toggled"]

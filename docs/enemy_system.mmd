@@ -1,0 +1,22 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    ENEMY["Kẻ thù (dùng chung)"]
+
+    ENEMY --> M["Mushroom - diệt bằng dẫm đầu"]
+    M --> F["Flying Eye - diệt bằng móc 1 lần"]
+    F --> G["Goblin - diệt bằng móc 2 lần"]
+    G --> S["Skeleton - diệt bằng móc 3 lần"]
+
+    ENEMY --> B1["Tuần tra"]
+    B1 --> B2["Tấn công"]
+    B2 --> B3["Nhận sát thương"]
+    B3 --> B4["Bị tiêu diệt"]
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class ENEMY,M,F,G,S,B1,B2,B3,B4 box;

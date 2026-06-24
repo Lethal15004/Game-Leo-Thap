@@ -1,0 +1,29 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    A([Mở ứng dụng]) --> B[Màn hình bắt đầu\nchọn toàn màn hình]
+    B --> C[Vào màn chơi - leo tháp]
+    C --> D[Di chuyển, nhảy, bắn dây móc]
+    D --> E{Gặp tình huống?}
+
+    E -- Kẻ thù --> F[Dẫm đầu hoặc bắn móc tiêu diệt]
+    E -- Bẫy / bị hạ --> G[Hồi sinh tại checkpoint]
+    E -- Checkpoint --> H[Lưu tiến trình]
+    E -- Không có --> D
+
+    F --> D
+    G --> D
+    H --> D
+
+    D --> I{Tới đỉnh tháp?}
+    I -- Chưa --> D
+    I -- Rồi --> J[Màn hình kết thúc\nthời gian + số lần được cứu]
+    J --> K([Hoàn thành])
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class A,B,C,D,E,F,G,H,I,J,K box;

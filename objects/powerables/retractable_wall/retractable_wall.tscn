@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://d14nqbqk1syth"]
+
+[ext_resource type="Script" path="res://objects/powerables/retractable_wall/retractable_wall.gd" id="1_5xg1p"]
+[ext_resource type="Texture2D" uid="uid://trklmv5kn05c" path="res://aseprite/tilemap.png" id="2_gme2g"]
+[ext_resource type="AudioStream" uid="uid://b5kkf5u6h4vi4" path="res://sounds/Retractable Platform.wav" id="5_a4l6k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pf0j"]
+atlas = ExtResource("2_gme2g")
+region = Rect2(17, 136, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th7y4"]
+atlas = ExtResource("2_gme2g")
+region = Rect2(34, 136, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8w1l"]
+atlas = ExtResource("2_gme2g")
+region = Rect2(0, 51, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3pt6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pf0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th7y4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8w1l")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsfp2"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6scjn"]
+size = Vector2(16, 15)
+
+[node name="RetractableWall" type="Node2D"]
+script = ExtResource("1_5xg1p")
+_sound = ExtResource("5_a4l6k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u3pt6")
+frame = 2
+frame_progress = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_jsfp2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6scjn")

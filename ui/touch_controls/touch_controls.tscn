@@ -1,0 +1,162 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://ui/touch_controls/touch_controls.gd" id="1_touch"]
+
+[sub_resource type="StyleBoxFlat" id="sb_btn"]
+bg_color = Color(1, 1, 1, 0.22)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.55)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_pressed"]
+bg_color = Color(1, 1, 1, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_jump"]
+bg_color = Color(0.4, 0.8, 0.4, 0.28)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 1, 0.5, 0.65)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="sb_jump_pressed"]
+bg_color = Color(0.4, 0.8, 0.4, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 1, 0.6, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+
+[node name="TouchControls" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_touch")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BtnLeft" type="Button" parent="Control"]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -60.0
+offset_right = 34.0
+offset_bottom = -34.0
+focus_mode = 0
+text = "<"
+theme_override_colors/font_color = Color(0.96, 0.91, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0.22, 0.16, 0.22, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/hover = SubResource("sb_btn")
+theme_override_styles/focus = SubResource("sb_btn")
+
+[node name="BtnRight" type="Button" parent="Control"]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = -60.0
+offset_right = 64.0
+offset_bottom = -34.0
+focus_mode = 0
+text = ">"
+theme_override_colors/font_color = Color(0.96, 0.91, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0.22, 0.16, 0.22, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/hover = SubResource("sb_btn")
+theme_override_styles/focus = SubResource("sb_btn")
+
+[node name="BtnDown" type="Button" parent="Control"]
+layout_mode = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -30.0
+offset_right = 49.0
+offset_bottom = -4.0
+focus_mode = 0
+text = "v"
+theme_override_colors/font_color = Color(0.96, 0.91, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0.22, 0.16, 0.22, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/hover = SubResource("sb_btn")
+theme_override_styles/focus = SubResource("sb_btn")
+
+[node name="BtnJump" type="Button" parent="Control"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -44.0
+offset_right = -8.0
+offset_bottom = -8.0
+focus_mode = 0
+text = "JUMP"
+theme_override_colors/font_color = Color(0.96, 0.91, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0.22, 0.16, 0.22, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("sb_jump")
+theme_override_styles/pressed = SubResource("sb_jump_pressed")
+theme_override_styles/hover = SubResource("sb_jump")
+theme_override_styles/focus = SubResource("sb_jump")
+
+[node name="BtnPause" type="Button" parent="Control"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -26.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 26.0
+focus_mode = 0
+text = "II"
+theme_override_colors/font_color = Color(0.96, 0.91, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0.22, 0.16, 0.22, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_pressed")
+theme_override_styles/hover = SubResource("sb_btn")
+theme_override_styles/focus = SubResource("sb_btn")

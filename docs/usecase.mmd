@@ -1,0 +1,50 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart LR
+    Player["Người chơi"]
+
+    subgraph SYS[" Hệ thống game Grapple Pack "]
+        direction TB
+        UC1(["Di chuyển và nhảy"])
+        UC2(["Bắn dây móc"])
+        UC3(["Đu / leo bằng điểm móc"])
+        UC4(["Dẫm đầu kẻ thù"])
+        UC5(["Bắn móc tiêu diệt kẻ thù"])
+        UC6(["Kích hoạt checkpoint"])
+        UC7(["Hồi sinh tại checkpoint"])
+        UC8(["Né tránh bẫy"])
+        UC9(["Tạm dừng trò chơi"])
+        UC10(["Đổi ngôn ngữ Anh / Việt"])
+        UC11(["Bật tùy chọn hỗ trợ"])
+        UC12(["Xem hướng dẫn và gợi ý"])
+    end
+
+    Player --- UC1
+    Player --- UC2
+    Player --- UC3
+    Player --- UC4
+    Player --- UC5
+    Player --- UC6
+    Player --- UC7
+    Player --- UC8
+    Player --- UC9
+    Player --- UC10
+    Player --- UC11
+    Player --- UC12
+
+    UC2 -. include .-> UC3
+    UC4 -. extend .-> UC5
+    UC6 -. include .-> UC7
+    UC9 -. include .-> UC10
+    UC9 -. include .-> UC11
+
+    classDef uc fill:#ffffff,stroke:#000000,color:#000000;
+    classDef actor fill:#ffffff,stroke:#000000,color:#000000;
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12 uc;
+    class Player actor;
+    style SYS fill:#ffffff,stroke:#000000,color:#000000;

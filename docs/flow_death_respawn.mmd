@@ -1,0 +1,22 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    A([Nhân vật bị hạ]) --> B{Đang bật chế độ Bất tử?}
+    B -- Có --> C[Bỏ qua, không chết]
+    C --> Z([Tiếp tục chơi])
+    B -- Không --> D[Khoá điều khiển\nNhấp nháy đỏ - dừng hình]
+    D --> E[Phát âm thanh\nLàm chậm thời gian + mờ màn hình]
+    E --> F[Tải lại màn chơi]
+    F --> G{Đã có checkpoint?}
+    G -- Có --> H[Đưa nhân vật về checkpoint gần nhất\nTăng số lần được cứu]
+    G -- Không --> I[Về vị trí đầu màn]
+    H --> Z
+    I --> Z
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class A,B,C,D,E,F,G,H,I,Z box;

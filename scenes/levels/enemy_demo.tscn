@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0enemydemo0001"]
+
+[ext_resource type="Script" path="res://scenes/levels/enemy_demo.gd" id="1"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://objects/enemies/mushroom.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://objects/enemies/goblin.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://objects/enemies/skeleton.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://objects/enemies/flying_eye.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls/touch_controls.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://pause/pause.tscn" id="8"]
+
+[sub_resource type="RectangleShape2D" id="rf"]
+size = Vector2(220, 20)
+
+[sub_resource type="RectangleShape2D" id="rw"]
+size = Vector2(10, 160)
+
+[sub_resource type="RectangleShape2D" id="rp"]
+size = Vector2(60, 8)
+
+[node name="EnemyDemo" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -55)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="Col" type="CollisionShape2D" parent="Floor"]
+position = Vector2(0, 10)
+shape = SubResource("rf")
+
+[node name="Vis" type="Polygon2D" parent="Floor"]
+color = Color(0.470588, 0.513726, 0.454902, 1)
+polygon = PackedVector2Array(-110, 0, 110, 0, 110, 20, -110, 20)
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-92, -60)
+
+[node name="Col" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("rw")
+
+[node name="Vis" type="Polygon2D" parent="LeftWall"]
+color = Color(0.470588, 0.513726, 0.454902, 1)
+polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(92, -60)
+
+[node name="Col" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("rw")
+
+[node name="Vis" type="Polygon2D" parent="RightWall"]
+color = Color(0.470588, 0.513726, 0.454902, 1)
+polygon = PackedVector2Array(-5, -80, 5, -80, 5, 80, -5, 80)
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(45, -58)
+
+[node name="Col" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("rp")
+
+[node name="Vis" type="Polygon2D" parent="Platform"]
+color = Color(0.470588, 0.513726, 0.454902, 1)
+polygon = PackedVector2Array(-30, -4, 30, -4, 30, 4, -30, 4)
+
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector2(-40, -30)
+
+[node name="Mushroom" parent="." instance=ExtResource("3")]
+position = Vector2(-55, 0)
+
+[node name="Goblin" parent="." instance=ExtResource("4")]
+position = Vector2(65, 0)
+
+[node name="Skeleton" parent="." instance=ExtResource("5")]
+position = Vector2(45, -62)
+
+[node name="FlyingEye" parent="." instance=ExtResource("6")]
+position = Vector2(0, -100)
+
+[node name="TouchControls" parent="." instance=ExtResource("7")]
+force_show_on_desktop = true
+
+[node name="Pause" parent="." instance=ExtResource("8")]

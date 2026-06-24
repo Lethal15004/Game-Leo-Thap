@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0enemymushroom1"]
+
+[ext_resource type="Script" path="res://objects/enemies/enemy.gd" id="1"]
+[ext_resource type="Texture2D" path="res://aseprite/enemies/mushroom/Idle.png" id="2"]
+[ext_resource type="Texture2D" path="res://aseprite/enemies/mushroom/Run.png" id="3"]
+[ext_resource type="Texture2D" path="res://aseprite/enemies/mushroom/Death.png" id="4"]
+[ext_resource type="Texture2D" path="res://aseprite/enemies/mushroom/Attack.png" id="5"]
+[ext_resource type="Texture2D" path="res://aseprite/enemies/mushroom/Take Hit.png" id="6"]
+
+[node name="Mushroom" type="CharacterBody2D"]
+script = ExtResource("1")
+idle_sheet = ExtResource("2")
+idle_count = 4
+walk_sheet = ExtResource("3")
+walk_count = 8
+death_sheet = ExtResource("4")
+death_count = 4
+attack_sheet = ExtResource("5")
+hit_sheet = ExtResource("6")
+sprite_scale = 0.62
+sprite_offset = Vector2(0, -25)
+visual_height = 22.0
+body_width = 12.0
+move_speed = 28.0
+stompable = true
+grapple_hits = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+
+[node name="StompZone" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="StompZone"]
+
+[node name="LedgeCheck" type="RayCast2D" parent="."]

@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+.godot/
+*.translation
+
+# Project specific ignores
+[Bb]uild/
+
+# Bản build APK (nặng, không đẩy lên Git — bàn giao qua Google Drive)
+*.apk
+*.apk.idsig
+
+# File tạm trên Windows
+Thumbs.db
+desktop.ini

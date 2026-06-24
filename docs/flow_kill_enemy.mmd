@@ -1,0 +1,31 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    A([Tương tác với kẻ thù]) --> B{Kiểu tương tác?}
+
+    B -- Dẫm từ trên xuống --> C{Kẻ thù dẫm được?}
+    C -- Có --> D[Kẻ thù chết\nNhân vật nảy lên]
+    C -- Không --> E[Nhân vật bị hạ]
+
+    B -- Trúng dây móc --> F{Kẻ thù dính móc?}
+    F -- Có --> G[Trừ một lượng máu\nNhấp nháy đỏ]
+    F -- Không --> H[Không tác dụng]
+    G --> I{Hết máu?}
+    I -- Có --> J[Kẻ thù chết]
+    I -- Không --> K[Tiếp tục tồn tại]
+
+    B -- Chạm vào thân --> E
+
+    D --> Z([Kết thúc])
+    E --> Z
+    H --> Z
+    J --> Z
+    K --> Z
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class A,B,C,D,E,F,G,H,I,J,K,Z box;

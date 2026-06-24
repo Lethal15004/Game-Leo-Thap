@@ -1,0 +1,28 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    A([Bắt đầu mỗi khung hình]) --> B[Nhận input từ người chơi]
+    B --> C{Đang bám dây móc?}
+
+    C -- Có --> D[Kéo nhân vật theo hướng dây]
+    C -- Không --> E{Có lệnh bắn dây móc?}
+
+    E -- Có --> F[Bắn dây móc và kiểm tra điểm bám]
+    E -- Không --> G[Xử lý di chuyển trái/phải]
+
+    F --> H
+    D --> H
+    G --> I[Xử lý nhảy và trọng lực]
+    I --> H[Cập nhật vị trí - move and slide]
+
+    H --> J[Kiểm tra va chạm với địa hình]
+    J --> K[Chọn và hiển thị animation phù hợp]
+    K --> L([Kết thúc khung hình])
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class A,B,C,D,E,F,G,H,I,J,K,L box;

@@ -1,0 +1,48 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    INPUT["Người chơi"]
+
+    subgraph UI[" Giao diện "]
+        HUD["Điều khiển cảm ứng"]
+        PAUSE["Menu tạm dừng"]
+    end
+
+    subgraph SCENE[" Màn chơi "]
+        GCTRL["GameController"]
+        PLAYER["Người chơi - Player"]
+        GRAPPLE["Súng móc"]
+        ENEMIES["Kẻ thù"]
+        OBJ["Vật thể màn chơi"]
+        TM["Địa hình"]
+    end
+
+    subgraph CORE[" Hệ thống lõi "]
+        GS["GameState"]
+        DC["Hội thoại"]
+        SOUND["Âm thanh và nhạc"]
+        FX["Hiệu ứng màn hình"]
+    end
+
+    INPUT --> UI
+    UI --> PLAYER
+    GCTRL --> PLAYER
+    GCTRL --> ENEMIES
+    GCTRL --> OBJ
+    GCTRL --> TM
+    PLAYER --> GRAPPLE
+    GRAPPLE --> ENEMIES
+    PLAYER --> ENEMIES
+
+    SCENE --> CORE
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class INPUT,HUD,PAUSE,GCTRL,PLAYER,GRAPPLE,ENEMIES,OBJ,TM,GS,DC,SOUND,FX box;
+    style UI fill:#ffffff,stroke:#000000,color:#000000;
+    style SCENE fill:#ffffff,stroke:#000000,color:#000000;
+    style CORE fill:#ffffff,stroke:#000000,color:#000000;

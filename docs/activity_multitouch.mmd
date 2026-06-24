@@ -1,0 +1,28 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    A([Một ngón tay chạm màn hình]) --> B{Ngón đang làm gì?}
+
+    B -- Vừa đặt xuống --> C{Chạm trúng nút điều khiển?}
+    C -- Có --> D[Bắt đầu giữ nút đó]
+    C -- Không --> E[Dùng để bắn dây móc]
+
+    B -- Nhấc lên --> F[Nhả nút đang giữ]
+
+    B -- Trượt sang chỗ khác --> G{Sang nút khác?}
+    G -- Có --> H[Nhả nút cũ, giữ nút mới]
+    G -- Không --> I[Giữ nguyên]
+
+    D --> Z([Xong])
+    E --> Z
+    F --> Z
+    H --> Z
+    I --> Z
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class A,B,C,D,E,F,G,H,I,Z box;

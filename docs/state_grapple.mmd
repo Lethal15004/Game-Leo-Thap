@@ -1,0 +1,21 @@
+%%{init: {'theme':'neutral', 'themeVariables': {
+  'lineColor':'#000000',
+  'primaryColor':'#ffffff',
+  'primaryBorderColor':'#000000',
+  'primaryTextColor':'#000000',
+  'fontFamily':'arial'
+}}}%%
+flowchart TB
+    START([Dây móc chờ sẵn]) --> IDLE["Trạng thái: Nghỉ"]
+
+    IDLE -->|Người chơi bắn dây| EXTENDING["Trạng thái: Bắn ra"]
+
+    EXTENDING -->|Trúng điểm bám có thể đu| HOOKED["Trạng thái: Đang bám"]
+    EXTENDING -->|Trúng tường / kẻ thù / hết tầm| RETRACTING["Trạng thái: Thu về"]
+
+    HOOKED -->|Thả tay hoặc hết chiều dài dây| RETRACTING
+
+    RETRACTING -->|Thu dây xong| IDLE
+
+    classDef box fill:#ffffff,stroke:#000000,color:#000000;
+    class START,IDLE,EXTENDING,HOOKED,RETRACTING box;
